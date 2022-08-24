@@ -1,0 +1,29 @@
+{
+  "name": "auth-function",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "backend": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mellomello-made/auth-function.git"
+  },
+  "author": "jungyun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mellomello-made/auth-function/issues"
+  },
+  "homepage": "https://github.com/mellomello-made/auth-function#readme",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "mongoose": "^6.5.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
