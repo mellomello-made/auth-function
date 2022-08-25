@@ -3,14 +3,17 @@ const app = express();
 const port = 3000;
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const { User } = require("./models/User");
+
 const config = require("./config/key");
 const { auth } = require("./middleware/auth");
+const { User } = require("./models/User");
 
 //바디파서가 데이터를 분석해서 가져온다
 app.use(bodyParser.urlencoded({ extended: true }));
 //바디파서가 json타입으로 된 것을 분석해서 가져온다
 app.use(bodyParser.json());
+//인증 미들웨어 auth.js 코드 작성할 때 6번째 줄에서 토큰 이름인 x_auth를 인식하지 못하는 문제 발생해서 추가한 코드
+app.use(cookieParser());
 
 const mongoose = require("mongoose");
 
@@ -90,6 +93,17 @@ app.get("/api/users/auth", auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     image: req.user.image,
+  });
+});
+
+//로그아웃 라우트 만들기-> 로그아웃 하려는 유저를 DB에서 찾는다 -> 유저의 토큰을 지운다.
+//로그인 된 상태기 때문에 auth 미들 웨어 넣어준다.
+app.get("/api/users/logout", auth, (res, req) => {
+  User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, user) => {
+    if (err) return res.json({ success: false, err });
+    return res.status(200).send({
+      success: true,
+    });
   });
 });
 
