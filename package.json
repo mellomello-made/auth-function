@@ -19,8 +19,12 @@
   },
   "homepage": "https://github.com/mellomello-made/auth-function#readme",
   "dependencies": {
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
+    "cookie-parser": "^1.4.6",
     "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.5.2"
   },
   "devDependencies": {
